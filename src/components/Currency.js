@@ -1,15 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Select from "react-select";
 
 import { AppContext } from '../context/AppContext';
 
+
 const Currency = () => {
-    const { currency } = useContext(AppContext);
     const { dispatch } = useContext(AppContext);
-    const [newCurrency, setNewCurrency] = useState(currency);
     
     const handleCurrencySelected = (value) => {
-        setNewCurrency(value);
         dispatch({
             type: 'CHG_CURRENCY',
             payload: value,
@@ -23,28 +21,34 @@ const Currency = () => {
         { value: "₹", label: "₹ Ruppee" }
       ];
 
-      const currencyStyles = {
-        option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-          // const color = chroma(data.color);
-          console.log({ data, isDisabled, isFocused, isSelected });
-          return {
-            ...styles,
-            backgroundColor: isFocused ? "#999999" : null,
-            color: "#333333"
-          };
-        }
-      };  
-
-    
     return (
-        <Select className='alert alert-success'
-            defaultValue={currencyOptions[1]}
-            label="Single select"
-            options={currencyOptions}
-            styles={currencyStyles}
-            onChange={(value) => handleCurrencySelected(value)}
-  />
-        
+        <div className='alert alert-success' style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <span>Currency (</span>
+            <span>
+                <Select
+                    styles ={{
+                        control: (state) => ({
+                            display: 'flex',
+                            width: '150px',
+                            flexDirection: 'row',
+                            backgroundColor: "#D1E7DD",
+                            borderColor: state.isFocused ? 'grey' : 'red',
+                        }),
+                        option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
+                            ...styles,
+                            backgroundColor: isFocused ? "#aaaaaa" : "#D1E7DD",
+                            color: "#333333"
+                        })
+                    }}
+                    defaultValue={currencyOptions[1]}
+                                
+                    options={currencyOptions}
+                    
+                    onChange={(value) => handleCurrencySelected(value)}
+                />
+            </span>
+            <span>)</span>
+        </div>
     );
     
 };
