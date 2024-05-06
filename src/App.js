@@ -21,19 +21,19 @@ const App = () => {
                 <h1 className='mt-3'>Company's Budget Allocation</h1>
                     <div className='row mt-3'>
 
-                        <div className='col-sm'>
+                        <div className='col-5'>
                             <Budget />
                         </div> 
                                                  
-                        <div className='col-sm'>
+                        <div className='col-2'>
                             <Remaining />
                         </div>
                                         
-                        <div className='col-sm'>
+                        <div className='col-2'>
                             <ExpenseTotal />
                         </div>
                                                   
-                        <div className='col-sm'>
+                        <div className='col-3'>
                             <Currency />
                         </div>
                     </div>
